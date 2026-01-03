@@ -50,10 +50,14 @@ const FruitsList = ({
         </TouchableOpacity>
       </View>
 
-      {data.length > 0 ? (
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
+          ListEmptyComponent={
+            hasSearch ? (
+              <Text style={{ marginTop: 20 }}>No fruits found</Text>
+            ) : null
+          }
           renderItem={({ item, index }) => (
             <View
               style={{
@@ -75,9 +79,7 @@ const FruitsList = ({
             </View>
           )}
         />
-      ) : hasSearch ? (
-        <Text style={{ marginTop: 20 }}>No fruits found</Text>
-      ) : null}
+    
     </View>
   );
 };
