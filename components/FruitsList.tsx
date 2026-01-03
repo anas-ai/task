@@ -29,6 +29,27 @@ const FruitsList = ({
     setHasSearch(query.length > 0);
   };
 
+
+  
+  const ListEmptyView = () => {
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#426ff5" />
+        <Text style={{ marginTop: 10, color: "gray" }}>Searching...</Text>
+      </View>
+    );
+  }
+
+  if (hasSearch) {  // State-based flag use karo
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 18, color: "gray" }}>No fruits found</Text>
+        <Text style={{ marginTop: 10, color: "gray" }}>Try another term</Text>
+      </View>
+    );
+  }
+  }
   return (
     <View>
       <View style={styles.searchSection}>
@@ -54,9 +75,7 @@ const FruitsList = ({
           data={data}
           keyExtractor={(item) => item.id.toString()}
           ListEmptyComponent={
-            hasSearch ? (
-              <Text style={{ marginTop: 20 }}>No fruits found</Text>
-            ) : null
+            <ListEmptyView/>
           }
           renderItem={({ item, index }) => (
             <View
