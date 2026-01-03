@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anasrizvi.task"
     },
     "web": {
       "output": "static",
@@ -27,6 +28,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-document-picker",
       [
         "expo-splash-screen",
         {
@@ -43,6 +45,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "dbc47f5e-73b1-4654-b8ce-3f08d4d353c3"
+      }
     }
   }
 }
