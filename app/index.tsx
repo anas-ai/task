@@ -345,7 +345,7 @@ const Index = () => {
       setList([res.data]);
     } catch (error: any) {
       if (axios.isAxiosError(error) && error.response?.status === 404) {
-        Alert.alert("Not Found", "No fruit found with that name");
+        console.log("Not Found", "No fruit found with that name");
       } else {
         Alert.alert("Error", "Failed to fetch fruits");
       }
@@ -358,7 +358,7 @@ const Index = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={"default"}/>
+      <StatusBar barStyle={"dark-content"} />
       <FruitsList
         data={list}
         onSearch={onSearch}

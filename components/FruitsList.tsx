@@ -13,7 +13,7 @@ const FruitsList = ({
   data,
   onSearch,
   onSelect,
-  loading
+  loading,
 }: {
   data: any[];
   onSearch: (text: string) => void;
@@ -21,7 +21,13 @@ const FruitsList = ({
   loading: boolean;
 }) => {
   const [text, setText] = useState("");
-  const [hasSearched, setHasSearched] = useState(false);
+  const [hasSearch, setHasSearch] = useState(false);
+
+  const handleSearch = () => {
+    const query = text.trim();
+    onSearch(query);
+    setHasSearch(query.length > 0);
+  };
 
   return (
     <View>
@@ -35,26 +41,16 @@ const FruitsList = ({
             onChangeText={setText}
           />
         </View>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={() => {
-            setHasSearched(true);
-            onSearch(text);
-          }}
-        >
+        <TouchableOpacity style={styles.buttonContainer} onPress={handleSearch}>
           {loading ? (
-            <ActivityIndicator color={'white'} size={'small'}/>
-          ):(
-
-          <Text style={styles.buttonText}>Search</Text>
+            <ActivityIndicator color={"white"} size={"small"} />
+          ) : (
+            <Text style={styles.buttonText}>Search</Text>
           )}
-
         </TouchableOpacity>
       </View>
-      {hasSearched && data.length === 0 && (
-        <Text style={{ marginTop: 20 }}>No fruits found</Text>
-      )}
-      {data.length > 0 && (
+
+      {data.length > 0 ? (
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
@@ -79,7 +75,9 @@ const FruitsList = ({
             </View>
           )}
         />
-      )}
+      ) : hasSearch ? (
+        <Text style={{ marginTop: 20 }}>No fruits found</Text>
+      ) : null}
     </View>
   );
 };
