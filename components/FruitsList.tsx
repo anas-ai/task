@@ -41,7 +41,7 @@ const FruitsList = ({
     );
   }
 
-  if (hasSearch) {  // State-based flag use karo
+  if (hasSearch) { 
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text style={{ fontSize: 18, color: "gray" }}>No fruits found</Text>
